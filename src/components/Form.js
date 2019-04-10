@@ -33,9 +33,9 @@ class Form extends React.Component {
 			<div className="modal-content">
 			  <button onClick={() => this.closeModal()} className="close">X</button>
 		      <form onSubmit={this.props.handleFormSubmit}>
-		      	<input type="text" name="title" placeholder="title" />
-		      	<input type="text" name="author" placeholder="author" />
-		      	<input type="text" name="img" placeholder="img" />
+		      	<input onChange={this.props.handleAddForm} type="text" name="title" placeholder="title" />
+		      	<input onChange={this.props.handleAddForm} type="text" name="author" placeholder="author" />
+		      	<input onChange={this.props.handleAddForm} type="text" name="img" placeholder="img" />
 		      	<input type="submit" />
 		      </form>
 		    </div>

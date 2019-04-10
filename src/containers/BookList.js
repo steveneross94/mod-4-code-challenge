@@ -13,7 +13,7 @@ class BookList extends Component {
     return (
       <div className="book-list">
         <h1>Book List</h1>
-        <Form handleFormSubmit={this.props.handleFormSubmit} />
+        <Form handleAddForm={this.props.handleAddForm} handleFormSubmit={this.props.handleFormSubmit} />
         <ul>{allBooks}</ul>
       </div>
     );

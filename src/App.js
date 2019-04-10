@@ -9,7 +9,10 @@ class App extends Component {
   state = {
   	books: [],
   	bookShelf: [],
-  	lastBookId: 0
+  	lastBookId: 0,
+  	title: '',
+  	author: '',
+  	img: ''
   }
 
   componentDidMount() {
@@ -43,7 +46,7 @@ class App extends Component {
 
   	this.setState({ lastBookId: this.state.books.length + 1 })
 
-  	const newBook = {id: this.state.lastBookId, title: e.target.title.value, author: e.target.author.value, img: e.target.img.value}
+  	const newBook = {id: this.state.lastBookId, title: this.state.title, author: this.state.author, img: this.state.img}
 
 	if(!this.state.books.includes(newBook)) {
   	  this.setState({
@@ -51,13 +54,21 @@ class App extends Component {
   	  })
   	}
   }
+
+  handleAddForm = (e) => {
+  	e.preventDefault()
+
+  	this.setState({
+  		[e.target.name]: e.target.value
+  	}, () => console.log(this.state))
+  }
  
   render() {
     return (
     	<main>
     	  <h1>Angeloz Bookz</h1>
 	      <div className="book-container">
-	        <BookList handleFormSubmit={this.handleFormSubmit} handleBookClick={this.handleBookClick} books={this.state.books} />
+	        <BookList handleAddForm={this.handleAddForm} handleFormSubmit={this.handleFormSubmit} handleBookClick={this.handleBookClick} books={this.state.books} />
 	        <Bookshelf handleBookShelfClick={this.handleBookShelfClick} books={this.state.bookShelf} />
 	      </div>
 	    </main>
