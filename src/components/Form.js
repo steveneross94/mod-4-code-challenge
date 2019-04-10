@@ -3,52 +3,29 @@ import React from "react";
 class Form extends React.Component {
 
   state = {
-  	clicked: false
+  	title: '',
+  	author: '',
+  	img: ''
   }
 
-  handleClick = () => {
-  	this.setState({
-  	  clicked: true
-  	}, () => this.changeModalStyling())
-  }
-
-  changeModalStyling = () => {
-	if (this.state.clicked) {
-		this.refs.modalRef.style = "display: block"
-	}
-  }
-
-  closeModal = () => {
-  	this.refs.modalRef.style = "display: none"
+  handleAddForm = (e) => {
+  	e.preventDefault()
 
   	this.setState({
-  		clicked: false
-  	})
-  }
-
-  generateModalHtml = () => {
-  	if (this.state.clicked === true) {
-	  	return (
-	  	  <div ref="modalRef" id="myModal" className="modal">
-			<div className="modal-content">
-			  <button onClick={() => this.closeModal()} className="close">X</button>
-		      <form onSubmit={this.props.handleFormSubmit}>
-		      	<input onChange={this.props.handleAddForm} type="text" name="title" placeholder="title" />
-		      	<input onChange={this.props.handleAddForm} type="text" name="author" placeholder="author" />
-		      	<input onChange={this.props.handleAddForm} type="text" name="img" placeholder="img" />
-		      	<input type="submit" />
-		      </form>
-		    </div>
-		  </div>
-  		)
-  	}
+  		[e.target.name]: e.target.value
+  	}, () => console.log(this.state))
   }
 
   render() {
     return (
       <div>
-    	<h3 onClick={this.handleClick}>Add a new book!</h3>
-    	{this.state.clicked ? this.generateModalHtml() : null}
+    	<h3>Add a new book!</h3>
+    	<form onSubmit={(e) => this.props.handleFormSubmit(e, this.state)}>
+		  	<input onChange={this.handleAddForm} type="text" name="title" placeholder="title" />
+		  	<input onChange={this.handleAddForm} type="text" name="author" placeholder="author" />
+		  	<input onChange={this.handleAddForm} type="text" name="img" placeholder="img" />
+	  	<input type="submit" />
+	  </form>
       </div>
     );
   }
