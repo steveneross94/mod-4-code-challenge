@@ -1,12 +1,13 @@
 import React from "react";
 
-const Book = props => {
+const Book = ({ title, author, img, id, addToShelf, removeFromShelf}) => {
+
 
   return (
-    <div className="book-card" onClick={props.handleBookClick ? () => props.handleBookClick(props.book) : () => props.handleBookShelfClick(props.book)}>
-      <h2>{props.book.title}</h2>
-      <p>{props.book.author}</p>
-      <img alt={props.book.name} src={props.book.img} /> 
+    <div className="book-card" onClick={() => addToShelf(id)}>
+      <h2>{title}</h2>
+      <p>{author}</p>
+      <img alt={'Maybe something should go here'} src={img} /> 
     </div>
   );
 };

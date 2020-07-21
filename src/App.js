@@ -6,61 +6,70 @@ import Bookshelf from "./containers/Bookshelf";
 
 class App extends Component {
 
-  state = {
-  	books: [],
-  	bookShelf: [],
-  	lastBookId: 0
-  }
+	state = {
+		books: [],
+		myBooks: []
+	}
 
-  componentDidMount() {
+	componentDidMount(){
+		this.fetchBooks()
+	}
 
-  	fetch('http://localhost:3005/books')
-  	  .then(resp => resp.json())
-  	  .then(books => {
-  	  	this.setState({books})
-  	  })
-  }
+	fetchBooks = () => {
+		fetch('http://localhost:3005/books')
+		.then(r => r.json())
+		.then(books => {
+			this.setState({ books })
+		})
+	}
 
-  handleBookClick = (book) => {
-  	if(!this.state.bookShelf.includes(book)) {
-  	  this.setState({
-  		  bookShelf: [...this.state.bookShelf, book]
-  	  })
-  	 }
-  }
+	addToShelf = (id) => {
+		console.log('in the method to add', id);
+		if (!this.state.myBooks.includes(bId => bId === id)){
+			this.setState({
+				myBooks: [...this.state.myBooks, id]
+			})
+		} 
+	}
 
-  handleBookShelfClick = (bookObj) => {
-  	const stateCopy = [...this.state.bookShelf]
-  	const newState = stateCopy.filter(book => book.id !== bookObj.id)
+	removeFromShelf = (id) => {
+		console.log('in the method to remove')
+		let newBookShelf = this.state.myBooks.filter(bId => bId !== id)
+		this.setState({ myBooks: newBookShelf })
+	}
 
-  	this.setState({
-  		bookShelf: newState
-  	})
-  }
+	handleSubmit = (e, book) => {
+		e.preventDefault()
+		let newBook = {
+			title: book.title,
+			author: book.author,
+			img: book.img
+		}
 
-  handleFormSubmit = (e, bookObj) => {
-  	e.preventDefault()
+		this.setState({
+			books: [...this.state.books, newBook]
+		})
+		
+	}
 
-  	// this.setState({ lastBookId: this.state.books.length + 1 })
-
-	if(!this.state.books.includes(bookObj)) {
-  	  this.setState({
-  		books: [bookObj, ...this.state.books]
-  	  })
-  	}
-  }
- 
-  render() {
-    return (
-    	<main>
-    	  <h1>Angeloz Bookz</h1>
-	      <div className="book-container">
-	        <BookList handleFormSubmit={this.handleFormSubmit} handleBookClick={this.handleBookClick} books={this.state.books} />
-	        <Bookshelf handleBookShelfClick={this.handleBookShelfClick} books={this.state.bookShelf} />
-	      </div>
-	    </main>
-    );
-  }
+	render() {
+	let myBookShelf = this.state.myBooks.map(id => this.state.books.find(book => book.id === id))
+	return (
+		<main>
+			<h1>Books</h1>
+			<div className="book-container">
+			<BookList books={this.state.books} addToShelf={this.addToShelf} handleSubmit={this.handleSubmit}/>
+			<Bookshelf myBooks={myBookShelf} removeFromShelf={this.removeFromShelf}/>
+			</div>
+		</main>
+	);
+	}
 }
 
 export default App;
+
+// need to fetch all books √
+// render books on the booklist (hold in state) √
+// books clicked from list add to bookshelf √
+// books cicked on bookshelf should remove from shelf √
+// form should add a book √

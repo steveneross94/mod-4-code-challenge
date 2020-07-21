@@ -14,39 +14,39 @@
     },
     {
       "id": 3,
-      "title": "To Kill A Mockingbird",
-      "author": "Harper Lee",
-      "img": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/To_Kill_a_Mockingbird.JPG/220px-To_Kill_a_Mockingbird.JPG"
-    },
-    {
-      "id": 4,
       "title": "Long Walk to Freedom",
       "author": "Nelson Mandela",
       "img": "https://images-na.ssl-images-amazon.com/images/I/51DVbVOCedL._SX318_BO1,204,203,200_.jpg"
     },
     {
-      "id": 5,
+      "id": 4,
       "title": "48 Laws of Power",
       "author": "Robert Green",
       "img": "https://images-na.ssl-images-amazon.com/images/I/71aG%2BxDKSYL.jpg"
     },
     {
-      "id": 6,
+      "id": 5,
       "title": "Homegoing",
       "author": "Yaa Gyasi",
       "img": "https://images-na.ssl-images-amazon.com/images/I/41UY3xTBq3L._SX322_BO1,204,203,200_.jpg"
     },
     {
-      "id": 7,
+      "id": 6,
       "title": "The Jungle",
       "author": "Upton Sinclair",
       "img": "https://images-na.ssl-images-amazon.com/images/I/51i13OyQ1EL._SX346_BO1,204,203,200_.jpg"
     },
     {
-      "id": 8,
+      "id": 7,
       "title": "We Should All Be Feminists",
       "author": "Chimamanda Ngozi Adichie",
       "img": "https://images-na.ssl-images-amazon.com/images/I/51L9u20bC7L._SX348_BO1,204,203,200_.jpg"
+    },
+    {
+      "title": "Holy Bible",
+      "author": "The Lord",
+      "img": "https://images-na.ssl-images-amazon.com/images/I/41OYxBLbBRL._SX304_BO1,204,203,200_.jpg",
+      "id": 8
     }
   ]
 }

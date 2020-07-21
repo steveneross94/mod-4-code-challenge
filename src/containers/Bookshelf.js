@@ -2,17 +2,22 @@ import React from "react";
 import Book from "../components/Book";
 
 const Bookshelf = props => {
-
-  const bookShelfBooks = props.books.map(book => {
-  	return <Book key={book.id} handleBookShelfClick={props.handleBookShelfClick} book={book} />
-  })
-
+  const { myBooks, removeFromShelf } = props
   return (
     <div>
       <h1>Book Shelf</h1>
-      <ul>{bookShelfBooks}</ul>
+      <ul>{myBooks.map(book => 
+      <>
+        <Book key={book.id} {...book} removeFromShelf={removeFromShelf}/>
+        <button onClick={() => removeFromShelf(book.id)}>Remove</button>
+      </>
+      )}
+       
+        </ul>
     </div>
   );
 };
 
 export default Bookshelf;
+
+

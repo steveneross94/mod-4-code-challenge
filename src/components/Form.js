@@ -2,28 +2,39 @@ import React from "react";
 
 class Form extends React.Component {
 
-  state = {
-  	title: '',
-  	author: '',
-  	img: ''
-  }
+	state = {
+		title: "",
+		author: "",
+		img: ""
+	}
 
-  handleAddForm = (e) => {
-  	e.preventDefault()
+	handleTitleChange = (e) => {
+		this.setState({
+			title: e.target.value
+		})
+	}
 
-  	this.setState({
-  		[e.target.name]: e.target.value
-  	}, () => console.log(this.state))
-  }
+	handleAuthorChange = (e) => {
+		this.setState({
+			author: e.target.value
+		})
+	}
+
+	handleImgChange = (e) => {
+		this.setState({
+			img: e.target.value
+		})
+	}
+
 
   render() {
     return (
       <div>
     	<h3>Add a new book!</h3>
-    	<form onSubmit={(e) => this.props.handleFormSubmit(e, this.state)}>
-		  	<input onChange={this.handleAddForm} type="text" name="title" placeholder="title" />
-		  	<input onChange={this.handleAddForm} type="text" name="author" placeholder="author" />
-		  	<input onChange={this.handleAddForm} type="text" name="img" placeholder="img" />
+    	<form onSubmit={(e) => this.props.handleSubmit(e,this.state)}>
+		  	<input type="text" name="title" placeholder="title" value={this.state.value} onChange={this.handleTitleChange}/>
+		  	<input type="text" name="author" placeholder="author" value={this.state.value} onChange={this.handleAuthorChange}/>
+		  	<input type="text" name="img" placeholder="img" value={this.state.value} onChange={this.handleImgChange}/>
 	  	<input type="submit" />
 	  </form>
       </div>
